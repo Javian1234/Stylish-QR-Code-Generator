@@ -31,8 +31,8 @@ function ARScene() {
   useEffect(() => {
     const registerComponent = () => {
       const AFRAME = (window as any).AFRAME;
-      if (AFRAME && !AFRAME.components['ar-hit-test']) {
-        AFRAME.registerComponent('ar-hit-test', {
+      if (AFRAME && !AFRAME.components['custom-surface-placer']) {
+        AFRAME.registerComponent('custom-surface-placer', {
           init: function () {
             this.xrHitTestSource = null;
             this.viewerSpace = null;
@@ -113,13 +113,13 @@ function ARScene() {
     : '';
 
   const imageHtml = config.imageUrl 
-    ? `<a-image src="${config.imageUrl}" position="-0.8 0 0.06" width="0.6" height="0.6" border-radius="0.3"></a-image>`
+    ? `<a-image src="${config.imageUrl}" crossorigin="anonymous" position="-0.8 0 0.06" width="0.6" height="0.6" border-radius="0.3"></a-image>`
     : `<a-circle position="-0.8 0 0.05" radius="0.3" color="#FFFFFF" material="opacity: 0.2; transparent: true"></a-circle>`;
 
   const sceneHtml = `
     <a-scene webxr="optionalFeatures: hit-test;" background="color: #111">
       <!-- Reticle for hit testing -->
-      <a-entity ar-hit-test visible="false">
+      <a-entity custom-surface-placer visible="false">
         <a-ring radius-inner="0.1" radius-outer="0.15" color="${config.color}" rotation="-90 0 0"></a-ring>
       </a-entity>
 

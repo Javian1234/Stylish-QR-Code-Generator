@@ -70,13 +70,12 @@ function ARTargetScene() {
     : '';
 
   const imageHtml = config.imageUrl 
-    ? `<a-image src="${config.imageUrl}" position="-0.8 0 0.06" width="0.6" height="0.6" material="alphaTest: 0.5"></a-image>`
+    ? `<a-image src="${config.imageUrl}" crossorigin="anonymous" position="-0.8 0 0.06" width="0.6" height="0.6" material="alphaTest: 0.5"></a-image>`
     : `<a-circle position="-0.8 0 0.05" radius="0.3" color="#FFFFFF" material="opacity: 0.2; transparent: true"></a-circle>`;
 
   const sceneHtml = `
     <a-scene 
       arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;" 
-      renderer="logarithmicDepthBuffer: true;"
       vr-mode-ui="enabled: false"
     >
       <!-- We use the standard Hiro marker for the prototype -->
