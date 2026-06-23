@@ -103,7 +103,12 @@ function ARTargetScene() {
   `;
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-black">
+    <div className="relative w-screen h-screen overflow-hidden bg-transparent">
+      {/* AR.js injects a video element directly into the body. 
+          We must force the body to be transparent and have no scrollbars so the camera feed is visible underneath the React app. */}
+      <style dangerouslySetInnerHTML={{__html: `
+        body, html { margin: 0; padding: 0; overflow: hidden !important; width: 100%; height: 100%; background-color: transparent !important; }
+      `}} />
       <div className="absolute top-6 left-6 z-50 bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border border-white/10 max-w-xs font-sans shadow-2xl">
         <h2 className="text-lg font-bold mb-1">Image Tracking Active</h2>
         <p className="text-sm text-neutral-300">Point your camera at the <strong>Target Image</strong> (Hiro Pattern) to see the magic happen!</p>
