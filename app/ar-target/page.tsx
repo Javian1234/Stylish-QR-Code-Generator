@@ -75,7 +75,6 @@ function ARTargetScene() {
 
   const sceneHtml = `
     <a-scene 
-      embedded 
       arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;" 
       renderer="logarithmicDepthBuffer: true;"
       vr-mode-ui="enabled: false"
@@ -105,9 +104,12 @@ function ARTargetScene() {
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-transparent">
       {/* AR.js injects a video element directly into the body. 
-          We must force the body to be transparent and have no scrollbars so the camera feed is visible underneath the React app. */}
+          We must force the body to be transparent and have no scrollbars so the camera feed is visible underneath the React app.
+          We also ensure the AR.js video tag takes up the full screen and centers itself properly on mobile. */}
       <style dangerouslySetInnerHTML={{__html: `
         body, html { margin: 0; padding: 0; overflow: hidden !important; width: 100%; height: 100%; background-color: transparent !important; }
+        video { object-fit: cover !important; width: 100vw !important; height: 100vh !important; margin: 0 !important; top: 0 !important; left: 0 !important; position: absolute !important; z-index: -2 !important; }
+        .a-canvas { z-index: -1 !important; }
       `}} />
       <div className="absolute top-6 left-6 z-50 bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border border-white/10 max-w-xs font-sans shadow-2xl">
         <h2 className="text-lg font-bold mb-1">Image Tracking Active</h2>
